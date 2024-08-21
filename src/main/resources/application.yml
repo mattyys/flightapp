@@ -1,0 +1,8 @@
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, beans
+  endpoint:
+    health:
+      enabled: false
