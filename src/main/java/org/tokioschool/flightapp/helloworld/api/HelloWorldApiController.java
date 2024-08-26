@@ -1,4 +1,4 @@
-package org.tokioschool.flightapp.api;
+package org.tokioschool.flightapp.helloworld.api;
 
 
 import lombok.RequiredArgsConstructor;

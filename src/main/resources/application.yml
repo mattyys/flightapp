@@ -1,8 +1,23 @@
-management:
-  endpoints:
-    web:
-      exposure:
-        include: health, beans
-  endpoint:
-    health:
-      enabled: false
+  management:
+    endpoints:
+      web:
+        exposure:
+          include: health, beans
+    endpoint:
+      health:
+        enabled: false
+  spring:
+    datasource:
+      url: jdbc:mariadb://localhost:3306/flights
+      username: root
+      password: dbpw
+    jpa:
+      show-sql: true
+      hibernate:
+        ddl-auto: validate
+
+       # Logging para obtener mas detalles de las sentencias realizadas por Hibernate
+  logging:
+    level:
+      org.hibernate.sql: debug
+      org.hibernate.orm.jdbc.bind: trace

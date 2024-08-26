@@ -12,18 +12,16 @@ import org.tokioschool.flightapp.helloworld.service.HelloWorldService;
 @RequiredArgsConstructor
 public class HelloWorldMvcController {
 
-    private final HelloWorldService helloWorldService;
+  private final HelloWorldService helloWorldService;
 
-    @GetMapping("/helloworld")
-    public ModelAndView getHi(
-            @RequestParam(name = "name", required = false)String name){
+  @GetMapping("/helloworld")
+  public ModelAndView getHi(@RequestParam(name = "name", required = false) String name) {
 
-        HiMessageResponseDTO hiMessageResponseDTO = helloWorldService.getHiMessage(name);
+    HiMessageResponseDTO hiMessageResponseDTO = helloWorldService.getHiMessage(name);
 
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("helloworld/index");
-        modelAndView.addObject("message", hiMessageResponseDTO.getMessage());
-        return modelAndView;
-
-    }
+    ModelAndView modelAndView = new ModelAndView();
+    modelAndView.setViewName("helloworld/index");
+    modelAndView.addObject("message", hiMessageResponseDTO.getMessage());
+    return modelAndView;
+  }
 }
