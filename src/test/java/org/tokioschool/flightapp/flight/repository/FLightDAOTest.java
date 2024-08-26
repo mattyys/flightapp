@@ -1,6 +1,5 @@
 package org.tokioschool.flightapp.flight.repository;
 
-import org.checkerframework.checker.units.qual.A;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -13,11 +12,15 @@ import org.tokioschool.flightapp.flight.domain.Airport;
 import org.tokioschool.flightapp.flight.domain.Flight;
 import org.tokioschool.flightapp.flight.domain.FlightImage;
 import org.tokioschool.flightapp.flight.domain.FlightStatus;
+import org.tokioschool.flightapp.flight.projection.FlightCancelledCountryByAirport;
+import org.tokioschool.flightapp.flight.projection.FlightCountryByAirport;
 
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.List;
 import java.util.UUID;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 @DataJpaTest(
     properties = {
@@ -65,8 +68,8 @@ class FLightDAOTest {
         Flight.builder()
             .occupancy(0)
             .capacity(90)
-            .departure(gla)
-            .arrival(mad)
+            .departure(mad)
+            .arrival(gla)
             .number("IB2235")
             .departureTime(LocalDateTime.now().plusSeconds(60))
             .status(FlightStatus.CANCELED)
@@ -148,4 +151,56 @@ class FLightDAOTest {
         "IB1234",
         page2.getContent().getFirst().getNumber()); // el primer elemento de la segunda pagina
   }
+
+  // test de projections
+  @Test
+  void givenFLights_whenFindDepartureCounters_thenReturnOk() {
+
+    List<FlightCountryByAirport> flightCountryByAirports =
+        fLightDAO.getFlightCountryByDepartureAirport();
+
+    assertThat(flightCountryByAirports).hasSize(1);
+    assertThat(flightCountryByAirports.getFirst())
+        .returns(3L, FlightCountryByAirport::getCounter)
+        .returns("MAD", FlightCountryByAirport::getAcronym);
+  }
+
+  @Test
+  void givenFlights_whenFindCancelledCounters_thenOk() {
+
+    List<FlightCancelledCountryByAirport> flightCancelledCountryByAirports =
+        fLightDAO.getFlightStatusCountryByAirport(FlightStatus.CANCELED);
+
+    assertThat(flightCancelledCountryByAirports).hasSize(1);
+    assertThat(flightCancelledCountryByAirports.getFirst())
+        .returns(1L, FlightCancelledCountryByAirport::counter)
+        .returns("MAD", FlightCancelledCountryByAirport::acronym);
+  }
+
+  @Test
+  void givenFlights_whenArrivalCounters_thenOk() {
+
+    List<FlightCountryByAirport> flightCountryByAirports =
+        fLightDAO.getFlightCountryByArrivalAirport();
+
+    assertThat(flightCountryByAirports).hasSize(1);
+    assertThat(flightCountryByAirports.getFirst())
+        .returns(3L, FlightCountryByAirport::getCounter)
+        .returns("GLA", FlightCountryByAirport::getAcronym);
+  }
+
+  @Test
+  void givenFlight_whenUpdatingNumber_thenOk(){
+
+    Flight flight = fLightDAO.findByNumberLike("IB1234").getFirst();
+
+    int ebu3303 = fLightDAO.updateFlightNumber(flight.getId(), "EBU3303");
+
+    List<Flight> flights = fLightDAO.findByNumberLike("EBU3303");
+
+    assertThat(flights).hasSize(1);
+    assertThat((flights.getFirst().getNumber())).isEqualTo("EBU3303");
+  }
+
+
 }
