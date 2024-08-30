@@ -8,11 +8,13 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 import org.tokioschool.flightapp.flight.domain.Airport;
 import org.tokioschool.flightapp.flight.domain.Flight;
+import org.tokioschool.flightapp.flight.domain.FlightImage;
 import org.tokioschool.flightapp.flight.domain.FlightStatus;
 import org.tokioschool.flightapp.flight.dto.FlightDTO;
 import org.tokioschool.flightapp.flight.mvc.dto.FlightMvcDTO;
 import org.tokioschool.flightapp.flight.repository.AirportDAO;
 import org.tokioschool.flightapp.flight.repository.FlightDAO;
+import org.tokioschool.flightapp.flight.service.FlightImageService;
 import org.tokioschool.flightapp.flight.service.FlightService;
 
 import java.util.List;
@@ -24,6 +26,7 @@ public class FlightServiceImpl implements FlightService {
   private final FlightDAO flightDAO;
   private final ModelMapper modelMapper;
   private final AirportDAO airportDAO;
+  private final FlightImageService flightImageService;
 
   @Override
   public List<FlightDTO> getFlights() {
@@ -73,13 +76,20 @@ public class FlightServiceImpl implements FlightService {
     Airport departure = getAirport(flightMvcDTO.getDeparture());
     Airport arrival = getAirport(flightMvcDTO.getArrival());
 
+    FlightImage flightImage = flight.getImage();//si es edicion, recuperamos la imagen actual si no es nula
+
+    if (!multipartFile.isEmpty()) {//si se ha subido una imagen se guarda
+      flightImage= flightImageService.saveImage(multipartFile);
+      flightImage.setFlight(flight);//agregamos el vuelo a la imagen para la relacion bidireccional de bd
+    }
+
     flight.setCapacity(flightMvcDTO.getCapacity());
     flight.setDeparture(departure);
     flight.setArrival(arrival);
     flight.setStatus(FlightStatus.valueOf(flightMvcDTO.getStatus()));
     flight.setNumber(flightMvcDTO.getNumber());
     flight.setDepartureTime(flightMvcDTO.getDayTime());
-    flight.setImage(null);
+    flight.setImage(flightImage);//se asigna la imagen al vuelo
 
     return flightDAO.save(flight);
   }
@@ -93,3 +103,5 @@ public class FlightServiceImpl implements FlightService {
                     "Airport with acronym:%s not found".formatted(acronym)));
   }
 }
+
+
