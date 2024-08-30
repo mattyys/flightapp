@@ -8,4 +8,3 @@ import org.springframework.context.annotation.Configuration;
 public class StoreConfiguration {}
 
 
-//quede en video m1u5 thymeleaf ii minuto 22
