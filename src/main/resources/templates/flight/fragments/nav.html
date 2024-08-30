@@ -1,0 +1,34 @@
+<nav xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:th="https://www.thymeleaf.org"
+     th:fragment="nav" class="navbar navbar-expand-lg bg-light">
+
+    <main class="container">
+        <a class="navbar-brand" th:href="@{/flight}">FlightApp</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedCOntent"
+                aria-controls="navbarSupportedCOntent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedCOntent">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                       aria-expanded="false" th:text="#{flight.nav.flights}">Flights
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" aria-current="page" th:href="@{/flight/flights}"
+                               th:text="#{flight.nav.list}">List</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" aria-current="page" th:href="@{/flight/flights-edit}">
+                                Add
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+    </main>
+
+</nav>

@@ -38,6 +38,7 @@ public class Flight {
   private LocalDateTime departureTime;
 
   @Enumerated(EnumType.STRING) // guarda el nombre del enum en la base de datos como string
+  @Column(columnDefinition = "varchar")//se le indica que se guarde como varchar
   private FlightStatus status;
 
   @Column(nullable = false)

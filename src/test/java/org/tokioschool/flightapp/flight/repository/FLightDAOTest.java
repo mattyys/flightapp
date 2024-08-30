@@ -31,7 +31,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class FLightDAOTest {
 
   @Autowired private AirportDAO airportDAO;
-  @Autowired private FLightDAO fLightDAO;
+  @Autowired private FlightDAO fLightDAO;
   @Autowired private FlightImageDAO flightImageDAO;
 
   @BeforeEach

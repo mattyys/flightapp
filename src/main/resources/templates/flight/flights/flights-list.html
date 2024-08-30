@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+
+<!--/* @thymesVar id="flights" type="java.util.List<org.tokioschool.flightapp.flight.dto.FlightDTO>" */-->
+
+<head th:replace="~{flight/fragments/head :: header('Flight-App')}"><title>title</title></head>
+
+<body>
+
+<nav th:replace="~{flight/fragments/nav :: nav}"></nav>
+
+<main class="container">
+    <div class="row py-5">
+        <h1 class="border-bottom">Flights</h1>
+    </div>
+
+    <section class="album py-5">
+        <div class="container">
+            <div class="row py-5 row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                <div class="col" th:each="flight : ${flights}">
+
+                    <article class="card shadow-sm">
+
+                        <img th:if="${flight.image == null}" class="img-fluid"
+                             th:src="@{/images/flight-default.jpg}" alt="flight-image"/>
+
+                        <div class="card-body">
+                            <p class="card-text"><strong th:text="${flight.number}"></strong></p>
+
+                            <p class="card-text">
+                                <span th:text="${flight.departureAcronym}"></span>
+                                <span>&nbsp;-&nbsp;</span>
+                                <span th:text="${flight.arrivalAcronym}"></span>
+                            </p>
+
+                            <p class="card-text">
+                                <span th:text="${#temporals.format(flight.departureTime, 'dd/MM/yyyy HH:mm')}"></span>
+                            </p>
+
+                            <p class="card-text">
+                                <span th:text="${flight.occupancy}"></span><span>/</span><span
+                                    th:text="${flight.capacity}"></span>
+                            </p>
+
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <a th:href="@{/flight/flights-edit/{flightId}(flightId=${flight.id})}"
+                                       class="btn btn-sm btn-outline-secondary">Edit</a>
+                              </div>
+                            </div>
+
+                        </div>
+                    </article>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+</main>
+
+<script th:replace="~{flight/fragments/scripts}"></script>
+</body>
+</html>

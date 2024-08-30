@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+
+<head th:replace="~{flight/fragments/head :: header('Flight-App')}"><title>title</title></head>
+
+<body>
+
+<nav th:replace="~{flight/fragments/nav :: nav}"></nav>
+
+<div class="container">
+    <div class="row py-5">
+        <h1 class="border-bottom">Flight web Application</h1>
+    </div>
+</div>
+
+<script th:replace="~{flight/fragments/scripts}"></script>
+</body>
+</html>

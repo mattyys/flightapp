@@ -18,7 +18,7 @@ create table roles
 create table users_with_roles
 (
     user_id varchar(13)         not null references users (id),
-    role_id bigint(20) unsigned not null references roles (id),
+    role_id bigint(20) unsigned not null references roles (id)
 );
 
 insert into users(id, created, name, surname, email, password)

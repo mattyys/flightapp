@@ -15,7 +15,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @Builder
 @Entity
-@Table(name = "flight_with_users")
+@Table(name = "flights_with_users")
 public class FlightBooking {
 
   @Id

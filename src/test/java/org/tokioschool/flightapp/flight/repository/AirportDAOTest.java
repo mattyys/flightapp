@@ -1,5 +1,6 @@
 package org.tokioschool.flightapp.flight.repository;
 
+import org.checkerframework.checker.units.qual.A;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -48,6 +49,7 @@ class AirportDAOTest {
       Assertions.assertNotNull(maybeMad.get().getAcronym());
 
     }
+
 
 
 }

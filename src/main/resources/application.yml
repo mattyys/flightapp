@@ -15,9 +15,14 @@
       show-sql: true
       hibernate:
         ddl-auto: validate
+      open-in-view: false
 
-       # Logging para obtener mas detalles de las sentencias realizadas por Hibernate
+  application:
+    store:
+      base-path: /home/matias/Escritorio/SpringTokio/flight-app-working-files
+
+      # Logging para obtener mas detalles de las sentencias realizadas por Hibernate
   logging:
     level:
-      org.hibernate.sql: debug
+      org.hibernate.sql: trace
       org.hibernate.orm.jdbc.bind: trace
