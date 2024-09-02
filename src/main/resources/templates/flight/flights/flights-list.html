@@ -23,6 +23,9 @@
 
                         <img th:if="${flight.image == null}" class="img-fluid"
                              th:src="@{/images/flight-default.jpg}" alt="flight-image"/>
+                        <img th:if="${flight.image != null}" class="img-fluid"
+                             th:src="@{/flight/resources/{resourceId}(resourceId=${flight.image.resourceId})}"
+                             alt="flight-image"/>
 
                         <div class="card-body">
                             <p class="card-text"><strong th:text="${flight.number}"></strong></p>
@@ -46,7 +49,7 @@
                                 <div class="btn-group">
                                     <a th:href="@{/flight/flights-edit/{flightId}(flightId=${flight.id})}"
                                        class="btn btn-sm btn-outline-secondary">Edit</a>
-                              </div>
+                                </div>
                             </div>
 
                         </div>

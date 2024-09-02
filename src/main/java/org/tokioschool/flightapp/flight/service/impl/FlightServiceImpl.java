@@ -64,6 +64,7 @@ public class FlightServiceImpl implements FlightService {
                 () ->
                     new IllegalArgumentException(
                         "Flight with id:%s not found".formatted(flightMvcDTO.getId())));
+
     flight = createOrEdit(flight, flightMvcDTO, multipartFile);
 
     return modelMapper.map(flight, FlightDTO.class);
