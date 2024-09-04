@@ -86,8 +86,8 @@
                     <label for="capacity" class="col-md-2 col-form-label">Capacity</label>
                     <div class="col-md-2">
                         <input type="text" class="form-control"
-                        id="capacity" name="capacity"
-                        th:value="*{capacity}">
+                               id="capacity" name="capacity"
+                               th:value="*{capacity}">
                     </div>
                 </div>
 
@@ -104,7 +104,17 @@
             </form>
         </section>
         <div class="col-md-4">
-            <!-- Aca va la imagen cuando la tengamos -->
+            <div class="col-md-12">
+                <img th:if="${flightImageResourceId !=null}" alt="fLight Image" class="img-fluid"
+                     th:src="@{/flight/resources/{resourceId}(resourceId=${flightImageResourceId})}">
+
+                <img th:if="${flightImageResourceId == null}" class="img-fluid"
+                     th:src="@{/images/flight-default.jpg}" alt="flight-image"/>
+            </div>
+            <div class="col-md-12">
+                <a th:if="${flightImageResourceId != null}"
+                   th:href="@{/flight/downloads/{resourceId}(resourceId=${flightImageResourceId})}">Download</a>
+            </div>
         </div>
     </div>
 

@@ -1,4 +1,4 @@
-package org.tokioschool.flightapp.base;
+package org.tokioschool.flightapp.base.service;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

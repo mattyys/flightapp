@@ -10,12 +10,14 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 import org.tokioschool.flightapp.flight.dto.AirportDTO;
 import org.tokioschool.flightapp.flight.dto.FlightDTO;
+import org.tokioschool.flightapp.flight.dto.ResourceDTO;
 import org.tokioschool.flightapp.flight.mvc.dto.FlightMvcDTO;
 import org.tokioschool.flightapp.flight.service.AirportService;
 import org.tokioschool.flightapp.flight.service.FlightService;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Controller
 @RequiredArgsConstructor
@@ -84,10 +86,17 @@ public class FlightMvcController {
 
     List<AirportDTO> airports = airportService.getAirports();
 
+    UUID imageId = Optional.ofNullable(flightDTO)
+            .map(FlightDTO::getImage)
+            .map(ResourceDTO::getResourceId)
+            .orElse(null);
+
     ModelAndView modelAndView = new ModelAndView();
     modelAndView.addAllObjects(model.asMap());
     modelAndView.addObject("flight", flightMvcDTO);
     modelAndView.addObject("airports", airports);
+
+    modelAndView.addObject("flightImageResourceId", imageId);
 
     return modelAndView;
   }

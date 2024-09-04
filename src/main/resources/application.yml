@@ -16,6 +16,9 @@
       hibernate:
         ddl-auto: validate
       open-in-view: false
+    servlet:
+      multipart:
+        max-file-size: 5MB
 
   application:
     store:

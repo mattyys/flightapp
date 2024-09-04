@@ -1,4 +1,4 @@
-package org.tokioschool.flightapp.base;
+package org.tokioschool.flightapp.base.service;
 
 import jakarta.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
