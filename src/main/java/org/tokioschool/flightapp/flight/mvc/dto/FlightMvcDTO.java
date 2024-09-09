@@ -1,6 +1,8 @@
 package org.tokioschool.flightapp.flight.mvc.dto;
 
 import lombok.*;
+import org.tokioschool.flightapp.core.validator.EnumValid;
+import org.tokioschool.flightapp.flight.dto.FlightDTO;
 
 import java.time.LocalDateTime;
 
@@ -16,6 +18,9 @@ public class FlightMvcDTO {
     private String departure;
     private String arrival;
     private LocalDateTime dayTime;
+
+    @EnumValid(target = FlightDTO.Status.class, required = true)
     private String status;
+
     private Integer capacity;
 }

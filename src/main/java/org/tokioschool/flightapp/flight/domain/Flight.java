@@ -59,4 +59,8 @@ public class Flight {
   @OneToOne(mappedBy = "flight", cascade = CascadeType.ALL, orphanRemoval = true)
   @JoinColumn(name = "flight_image_id", referencedColumnName = "id")
   private FlightImage image;
+
+  //para utilizar en test o funcionalidad con optimistick locking
+//  @Version
+//  private long version;
 }

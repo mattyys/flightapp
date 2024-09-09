@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 import org.tokioschool.flightapp.flight.domain.Flight;
 import org.tokioschool.flightapp.flight.domain.FlightBooking;
@@ -25,7 +26,8 @@ public class FlightBookingServiceImpl implements FlightBookingService {
   private final ModelMapper modelMapper;
 
   @Override
-  @Transactional
+//  @Transactional
+  @Transactional(isolation = Isolation.SERIALIZABLE)//se aisala la transaccion dejandola secuencial
   public FlightBookingDTO bookFlight(Long flightId, String userId) {
     Flight flight =
         flightDAO

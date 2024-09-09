@@ -18,6 +18,9 @@ import org.tokioschool.flightapp.flight.service.FlightImageService;
 import org.tokioschool.flightapp.flight.service.FlightService;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -55,7 +58,7 @@ public class FlightServiceImpl implements FlightService {
 
   @Override
   @Transactional // le indicamos a Spring que este metodo realiza una transaccion en la base de
-                 // datos
+  // datos
   public FlightDTO edithFlight(FlightMvcDTO flightMvcDTO, @Nullable MultipartFile multipartFile) {
     Flight flight =
         flightDAO
@@ -70,6 +73,13 @@ public class FlightServiceImpl implements FlightService {
     return modelMapper.map(flight, FlightDTO.class);
   }
 
+  @Override
+  public Map<Long, FlightDTO> getFlightsById(Set<Long> flightsIds) {
+    return flightDAO.findAllById(flightsIds).stream()
+        .collect(
+            Collectors.toMap(Flight::getId, flight -> modelMapper.map(flight, FlightDTO.class)));
+  }
+
   protected Flight
       createOrEdit( // los metodos usados en @Transactional deben ser protected(no privados)
       Flight flight, FlightMvcDTO flightMvcDTO, MultipartFile multipartFile) {
@@ -77,11 +87,13 @@ public class FlightServiceImpl implements FlightService {
     Airport departure = getAirport(flightMvcDTO.getDeparture());
     Airport arrival = getAirport(flightMvcDTO.getArrival());
 
-    FlightImage flightImage = flight.getImage();//si es edicion, recuperamos la imagen actual si no es nula
+    FlightImage flightImage =
+        flight.getImage(); // si es edicion, recuperamos la imagen actual si no es nula
 
-    if (!multipartFile.isEmpty()) {//si se ha subido una imagen se guarda
-      flightImage= flightImageService.saveImage(multipartFile);
-      flightImage.setFlight(flight);//agregamos el vuelo a la imagen para la relacion bidireccional de bd
+    if (!multipartFile.isEmpty()) { // si se ha subido una imagen se guarda
+      flightImage = flightImageService.saveImage(multipartFile);
+      flightImage.setFlight(
+          flight); // agregamos el vuelo a la imagen para la relacion bidireccional de bd
     }
 
     flight.setCapacity(flightMvcDTO.getCapacity());
@@ -90,7 +102,7 @@ public class FlightServiceImpl implements FlightService {
     flight.setStatus(FlightStatus.valueOf(flightMvcDTO.getStatus()));
     flight.setNumber(flightMvcDTO.getNumber());
     flight.setDepartureTime(flightMvcDTO.getDayTime());
-    flight.setImage(flightImage);//se asigna la imagen al vuelo
+    flight.setImage(flightImage); // se asigna la imagen al vuelo
 
     return flightDAO.save(flight);
   }
@@ -104,5 +116,3 @@ public class FlightServiceImpl implements FlightService {
                     "Airport with acronym:%s not found".formatted(acronym)));
   }
 }
-
-

@@ -7,6 +7,8 @@ import org.tokioschool.flightapp.flight.dto.FlightDTO;
 import org.tokioschool.flightapp.flight.mvc.dto.FlightMvcDTO;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 public interface FlightService {
 
@@ -17,4 +19,8 @@ public interface FlightService {
     FlightDTO createFlight(FlightMvcDTO flightMvcDTO, @Nullable MultipartFile multipartFile);
 
     FlightDTO edithFlight(FlightMvcDTO flightMvcDTO, @Nullable MultipartFile multipartFile);
+
+    Map<Long, FlightDTO> getFlightsById(Set<Long> flightsIds);
 }
+
+
