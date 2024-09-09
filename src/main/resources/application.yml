@@ -17,6 +17,8 @@
         ddl-auto: validate
       open-in-view: false
     servlet:
+      session:
+        tracking-modes: COOKIE
       multipart:
         max-file-size: 5MB
 

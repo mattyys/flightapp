@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<!--/* @thymesVar id="locator" type="java.lang.String" */-->
+
+<head th:replace="~{flight/fragments/head :: header(title ='Flight-App - Bookings')}"><title>title</title></head>
+<body>
+<nav th:replace="~{flight/fragments/nav :: nav}"></nav>
+
+<main class="container">
+    <div class="row py-5 mb-3">
+        <h1 class="border-bottom">Booking Confirm</h1>
+    </div>
+
+    <div class="alert alert-primary" role="alert" th:text="${locator}">locator</div>
+</main>
+
+
+<div th:insert="~{flight/fragments/scripts}"></div>
+</body>
+</html>

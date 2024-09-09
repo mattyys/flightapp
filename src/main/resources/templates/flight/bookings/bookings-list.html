@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<!--/* @thymesVar id="flightBookingsSession" type="org.tokioschool.flightapp.flight.dto.FlightBookingSessionDTO" */-->
+<!--/* @thymesVar id="flightMap" type="java.util.Map<java.lang.Long, org.tokioschool.flightapp.flight.dto.FlightDTO>" */-->
+
+<head th:replace="~{flight/fragments/head :: header(title = 'Flight-App - Bookings')}"><title>title</title></head>
+
+
+<body>
+<nav th:replace="~{flight/fragments/nav :: nav}"></nav>
+
+<main class="container">
+    <div class="row py-5 mb-3">
+        <h1 class="border-bottom">Bookings</h1>
+    </div>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Number</th>
+            <th scope="col">Journey</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:if="${flightBookingSession.getCurrentFlightId() != null}"
+            th:object="${flightMap.get(flightBookingSession.getCurrentFlightId())}">
+            <th scope="row" th:text="*{number}">number</th>
+            <td th:text="*{departureAcronym + ' - ' + arrivalAcronym}">journey</td>
+
+        </tr>
+        </tbody>
+    </table>
+
+    <div class="row py-2" th:if="${flightBookingSession.getCurrentFlightId() != null}">
+        <div class="col-md-8">
+            <form class="row" th:action="@{/flight/bookings-confirm}" method="post">
+                <div class="col-md-1">
+                    <button class="btn btn-primary" type="submit">Confirm</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <table class="table" th:if="${!flightBookingSession.getDiscardedFlightsIds().isEmpty()}">
+        <thead>
+        <tr>
+            <th scope="col"><i>Number</i></th>
+            <th scope="col"><i>Journey</i></th>
+        </tr>
+        </thead>
+        <tr th:each="flightId : ${flightBookingSession.getDiscardedFlightsIds()}"
+            th:object="${flightMap.get(flightId)}">
+            <th scope="row"><i th:text="*{number}">number</i></th>
+            <td><i th:text="*{departureAcronym + ' - ' + arrivalAcronym}">journey</i></td>
+    </table>
+
+
+</main>
+
+
+<div th:insert="~{flight/fragments/scripts}"></div>
+</body>
+</html>
