@@ -16,7 +16,7 @@ public class FlightMvcDTOValidator extends CustomValidatorBean {
   @Override
   public void validate(Object target, Errors errors) {
 
-    localValidatorFactoryBean.validate(target, errors);
+    localValidatorFactoryBean.validate(target, errors);//valida el objeto target y añade los errores al objeto errors
 
     if (errors.hasErrors() || !(target instanceof FlightMvcDTO flightMvcDTO)) return;
 
@@ -28,4 +28,6 @@ public class FlightMvcDTOValidator extends CustomValidatorBean {
           "arrival cannot be the same as departure");
     }
   }
+
+  //field: es el error que detencata del campo arrivel que se va a mostrar en el formulario
 }

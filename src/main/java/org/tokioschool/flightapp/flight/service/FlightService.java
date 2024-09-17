@@ -18,7 +18,7 @@ public interface FlightService {
 
     FlightDTO createFlight(FlightMvcDTO flightMvcDTO, @Nullable MultipartFile multipartFile);
 
-    FlightDTO edithFlight(FlightMvcDTO flightMvcDTO, @Nullable MultipartFile multipartFile);
+    FlightDTO editFlight(FlightMvcDTO flightMvcDTO, @Nullable MultipartFile multipartFile);
 
     Map<Long, FlightDTO> getFlightsById(Set<Long> flightsIds);
 }

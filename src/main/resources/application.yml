@@ -21,6 +21,9 @@
         tracking-modes: COOKIE
       multipart:
         max-file-size: 5MB
+    messages:
+      basename: messages/messages
+#      use-code-as-default-message: true # Para que se muestren los codigos de los mensajes en lugar de los mensajes
 
   application:
     store:

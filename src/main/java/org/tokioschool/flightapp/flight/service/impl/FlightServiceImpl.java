@@ -59,7 +59,7 @@ public class FlightServiceImpl implements FlightService {
   @Override
   @Transactional // le indicamos a Spring que este metodo realiza una transaccion en la base de
   // datos
-  public FlightDTO edithFlight(FlightMvcDTO flightMvcDTO, @Nullable MultipartFile multipartFile) {
+  public FlightDTO editFlight(FlightMvcDTO flightMvcDTO, @Nullable MultipartFile multipartFile) {
     Flight flight =
         flightDAO
             .findById(flightMvcDTO.getId())

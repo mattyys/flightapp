@@ -20,11 +20,17 @@
                                th:text="#{flight.nav.list}">List</a>
                         </li>
                         <li>
-                            <a class="dropdown-item" aria-current="page" th:href="@{/flight/flights-edit}">
-                                Add
+                            <a class="dropdown-item" aria-current="page" th:href="@{/flight/flights-edit}"
+                               th:text="#{flight.nav.edit}">
+                                Edit
                             </a>
                         </li>
                     </ul>
+                </li>
+                <li class="nav-item">
+                    <!--th:href="@{''(lang='en')} crea un enlace a la misma pagina que estoy con el cambio en el lenguaje-->
+                    <a class="nav-link" href="#" th:href="@{''(lang='en')}" th:if="${#locale.language == 'es'}">English</a>
+                    <a class="nav-link" href="#" th:href="@{''(lang='es')}" th:if="${#locale.language == 'en'}">Español</a>
                 </li>
             </ul>
         </div>

@@ -28,38 +28,58 @@
                     <label for="number" class="col-md-2 col-form-label">Number</label>
                     <div class="col-md-5">
                         <input type="text" class="form-control"
+                               th:classappend="${#fields.hasErrors('number')} ? 'is-invalid' : ''"
                                id="number" name="number" th:value="*{number}">
+                        <div class="invalid-feedback"
+                             th:if="${#fields.hasErrors('number')}"
+                             th:errors="*{number}"></div>
                     </div>
                 </div>
                 <div class="mb-3 row">
                     <label for="departure" class="col-md-2 col-form-label">Departure</label>
                     <div class="col-md-5">
-                        <select name="departure" id="departure" class="form-select" aria-label="Departure from">
+                        <select name="departure"
+                                th:classappend="${#fields.hasErrors('departure')} ? 'is-invalid' : ''"
+                                id="departure" class="form-select" aria-label="Departure from">
                             <option value="">Departure from</option>
                             <option th:selected="${flight.departure != null && flight.departure == airport.acronym}"
                                     th:each="airport : ${airports}" th:value="${airport.acronym}"
                                     th:text="${airport.acronym} + ' (' + ${airport.name} + ')'"></option>
                         </select>
+                        <div class="invalid-feedback"
+                             th:if="${#fields.hasErrors('departure')}"
+                             th:errors="*{departure}"></div>
                     </div>
                 </div>
 
                 <div class="mb-3 row">
                     <label for="arrival" class="col-md-2 col-form-label">Arrival</label>
                     <div class="col-md-5">
-                        <select name="arrival" id="arrival" class="form-select" aria-label="Arrival to">
+                        <select name="arrival"
+                                th:classappend="${#fields.hasErrors('arrival')} ? 'is-invalid' : ''"
+                                id="arrival" class="form-select" aria-label="Arrival to">
                             <option value="">Arrival</option>
                             <option th:selected="${flight.arrival != null && flight.arrival == airport.acronym}"
                                     th:each="airport : ${airports}" th:value="${airport.acronym}"
                                     th:text="${airport.acronym} + ' (' + ${airport.name} + ')'"></option>
                         </select>
+                        <div class="invalid-feedback"
+                             th:if="${#fields.hasErrors('arrival')}"
+                             th:errors="*{arrival}">
+                        </div>
                     </div>
                 </div>
 
                 <div class="mb-3 row">
                     <label for="dayTime" class="col-md-2 col-form-label">Departure day</label>
                     <div class="col-md-5">
-                        <input type="datetime-local" class="form-control" id="dayTime" name="dayTime"
+                        <input type="datetime-local" class="form-control"
+                               th:classappend="${#fields.hasErrors('dayTime')} ? 'is-invalid' : ''"
+                               id="dayTime" name="dayTime"
                                th:value="*{#temporals.format(dayTime,'yyyy-MM-dd''T''HH:mm')}">
+                        <div class="invalid-feedback"
+                             th:if="${#fields.hasErrors('dayTime')}"
+                             th:errors="*{dayTime}"></div>
                     </div>
                 </div>
 
@@ -69,6 +89,7 @@
                         <div class="form-check"
                              th:each="status : ${T(org.tokioschool.flightapp.flight.domain.FlightStatus).values()}">
                             <input type="radio" class="form-check-input"
+                                   th:classappend="${#fields.hasErrors('status')} ? 'is-invalid' : ''"
                                    th:id="${status.name()}" name="status"
                                    th:checked="${flight.status != null && flight.status == status.name()}"
                                    th:value="${status.name()}">
@@ -86,8 +107,12 @@
                     <label for="capacity" class="col-md-2 col-form-label">Capacity</label>
                     <div class="col-md-2">
                         <input type="text" class="form-control"
+                               th:classappend="${#fields.hasErrors('capacity')} ? 'is-invalid' : ''"
                                id="capacity" name="capacity"
                                th:value="*{capacity}">
+                        <div class="invalid-feedback"
+                             th:if="${#fields.hasErrors('capacity')}"
+                             th:errors="*{capacity}"></div>
                     </div>
                 </div>
 
@@ -108,8 +133,8 @@
                 <img th:if="${flightImageResourceId !=null}" alt="fLight Image" class="img-fluid"
                      th:src="@{/flight/resources/{resourceId}(resourceId=${flightImageResourceId})}">
 
-                <img th:if="${flightImageResourceId == null}" class="img-fluid"
-                     th:src="@{/images/flight-default.jpg}" alt="flight-image"/>
+                <!--<img th:if="${flightImageResourceId == null}" class="img-fluid"
+                     th:src="@{/images/flight-default.jpg}" alt="flight-image"/>-->
             </div>
             <div class="col-md-12">
                 <a th:if="${flightImageResourceId != null}"
