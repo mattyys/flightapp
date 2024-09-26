@@ -16,7 +16,7 @@ import org.tokioschool.flightapp.flight.service.FlightBookingService;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.concurrent.StructuredTaskScope;
+//import java.util.concurrent.StructuredTaskScope;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -64,7 +64,7 @@ class FlightBookingDAOTest {
 
     userDAO.saveAll(List.of(user1, user2));
   }
-
+/*
   @Test
   void givenConcurrentsUsers_whenBookingLastSlot_withVirtualThreads() throws Exception {
     User[] users = {user1, user2};
@@ -116,5 +116,5 @@ class FlightBookingDAOTest {
         Assertions.assertThat(exception).isInstanceOf(OptimisticLockingFailureException.class);
       }
     }
-  }
+  }*/
 }

@@ -22,7 +22,7 @@ public class FlightResourceMvcController {
   public ResponseEntity<byte[]> getFlightResourceAsStream(
       @PathVariable(value = "resourceId") UUID resourceId) {
 
-    FlightImageResourceDTO flightImageResourceDTO = flightImageService.getIMage(resourceId);
+    FlightImageResourceDTO flightImageResourceDTO = flightImageService.getImage(resourceId);
 
     return ResponseEntity.ok()
         .contentType(MediaType.parseMediaType(flightImageResourceDTO.getContentType()))
@@ -34,7 +34,7 @@ public class FlightResourceMvcController {
   public ResponseEntity<byte[]> getFlightResourceAsAttachment(
       @PathVariable(value = "resourceId") UUID resourceId) {
 
-    FlightImageResourceDTO flightImageResourceDTO = flightImageService.getIMage(resourceId);
+    FlightImageResourceDTO flightImageResourceDTO = flightImageService.getImage(resourceId);
 
     // instanciamos un objeto HttpHeaders para añadir los headers necesarios
     HttpHeaders httpHeaders = new HttpHeaders();

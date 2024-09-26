@@ -10,7 +10,7 @@ public interface FlightImageService {
 
     FlightImage saveImage(MultipartFile multipartFile);
 
-    FlightImageResourceDTO getIMage(UUID resourceId);
+    FlightImageResourceDTO getImage(UUID resourceId);
 
     void deleteImage(UUID resourceId);
 }

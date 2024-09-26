@@ -20,6 +20,7 @@ public class MessageSourceConfiguration {
     messageSource.setDefaultEncoding(StandardCharsets.UTF_8.name());
 
     return messageSource;
+
   }
 
 }

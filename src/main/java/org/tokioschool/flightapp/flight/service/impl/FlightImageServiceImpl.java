@@ -35,7 +35,7 @@ public class FlightImageServiceImpl implements FlightImageService {
   }
 
   @Override
-  public FlightImageResourceDTO getIMage(UUID resourceId) {
+  public FlightImageResourceDTO getImage(UUID resourceId) {
 
     ResourceContentDTO resourceContentDTO =
         storeService

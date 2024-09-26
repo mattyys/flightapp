@@ -25,12 +25,32 @@
       basename: messages/messages
 #      use-code-as-default-message: true # Para que se muestren los codigos de los mensajes en lugar de los mensajes
 
+    mail:
+      host: smtp.gmail.com
+      port: 587
+      username: emailsendermatias@gmail.com
+      password: caxxocxlfupuzkro
+      properties:
+        mail:
+          smtp:
+            auth: true
+            starttls:
+              enable: true
+
+    application:
+      name: flightApp
+
   application:
     store:
       base-path: /home/matias/Escritorio/SpringTokio/flight-app-working-files
 
-      # Logging para obtener mas detalles de las sentencias realizadas por Hibernate
   logging:
-    level:
-      org.hibernate.sql: trace
-      org.hibernate.orm.jdbc.bind: trace
+    file:
+      path: /home/matias/logs
+
+    # Logging para obtener mas detalles de las sentencias realizadas por Hibernate
+#  logging:
+#    level:
+#      org.tokioschool.flightapp.base.service: trace
+#      org.hibernate.sql: trace
+#      org.hibernate.orm.jdbc.bind: trace
