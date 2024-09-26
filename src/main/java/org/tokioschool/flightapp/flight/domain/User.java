@@ -29,7 +29,7 @@ public class User {
     private String password;
     private LocalDateTime lastLogin;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name="users_with_roles",
             joinColumns = @JoinColumn(name="user_id"),
