@@ -68,8 +68,8 @@ class FLightDAOTest {
         Flight.builder()
             .occupancy(0)
             .capacity(90)
-            .departure(mad)
-            .arrival(gla)
+            .departure(gla)
+            .arrival(mad)
             .number("IB2235")
             .departureTime(LocalDateTime.now().plusSeconds(60))
             .status(FlightStatus.CANCELED)
@@ -159,10 +159,10 @@ class FLightDAOTest {
     List<FlightCountryByAirport> flightCountryByAirports =
         fLightDAO.getFlightCountryByDepartureAirport();
 
-    assertThat(flightCountryByAirports).hasSize(1);
+    assertThat(flightCountryByAirports).hasSize(2);
     assertThat(flightCountryByAirports.getFirst())
-        .returns(3L, FlightCountryByAirport::getCounter)
-        .returns("MAD", FlightCountryByAirport::getAcronym);
+        .returns(1L, FlightCountryByAirport::getCounter)
+        .returns("GLA", FlightCountryByAirport::getAcronym);
   }
 
   @Test
@@ -174,7 +174,7 @@ class FLightDAOTest {
     assertThat(flightCancelledCountryByAirports).hasSize(1);
     assertThat(flightCancelledCountryByAirports.getFirst())
         .returns(1L, FlightCancelledCountryByAirport::counter)
-        .returns("MAD", FlightCancelledCountryByAirport::acronym);
+        .returns("GLA", FlightCancelledCountryByAirport::acronym);
   }
 
   @Test
@@ -183,9 +183,9 @@ class FLightDAOTest {
     List<FlightCountryByAirport> flightCountryByAirports =
         fLightDAO.getFlightCountryByArrivalAirport();
 
-    assertThat(flightCountryByAirports).hasSize(1);
+    assertThat(flightCountryByAirports).hasSize(2);
     assertThat(flightCountryByAirports.getFirst())
-        .returns(3L, FlightCountryByAirport::getCounter)
+        .returns(2L, FlightCountryByAirport::getCounter)
         .returns("GLA", FlightCountryByAirport::getAcronym);
   }
 

@@ -1,5 +1,6 @@
 <nav xmlns="http://www.w3.org/1999/xhtml"
      xmlns:th="https://www.thymeleaf.org"
+     xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6"
      th:fragment="nav" class="navbar navbar-expand-lg bg-light">
 
     <main class="container">
@@ -11,7 +12,8 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedCOntent">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                <li class="nav-item dropdown">
+
+                <li sec:authorize="isAuthenticated()" class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                        aria-expanded="false" th:text="#{flight.nav.flights}">Flights
                     </a>
@@ -19,18 +21,40 @@
                         <li><a class="dropdown-item" aria-current="page" th:href="@{/flight/flights}"
                                th:text="#{flight.nav.list}">List</a>
                         </li>
-                        <li>
+                        <li sec:authorize="hasAnyAuthority('ADMIN')">
                             <a class="dropdown-item" aria-current="page" th:href="@{/flight/flights-edit}"
-                               th:text="#{flight.nav.edit}">
-                                Edit
+                               th:text="#{flight.nav.edit}">Edit
                             </a>
                         </li>
                     </ul>
                 </li>
+
+                <li sec:authorize="isAuthenticated()" class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false" th:text="#{flight.nav.user}">
+                        User
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item disabled" sec:authentication="name"></a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li>
+                            <form method="POST" th:action="@{/logout}">
+                                <button type="submit" class="btn-link dropdown-item"
+                                th:text="#{flight.nav.logout}">Logout</button>
+                            </form>
+                        </li>
+                    </ul>
+                </li>
+
+
                 <li class="nav-item">
                     <!--th:href="@{''(lang='en')} crea un enlace a la misma pagina que estoy con el cambio en el lenguaje-->
-                    <a class="nav-link" href="#" th:href="@{''(lang='en')}" th:if="${#locale.language == 'es'}">English</a>
-                    <a class="nav-link" href="#" th:href="@{''(lang='es')}" th:if="${#locale.language == 'en'}">Español</a>
+                    <a class="nav-link" href="#" th:href="@{''(lang='en')}"
+                       th:if="${#locale.language == 'es'}">English</a>
+                    <a class="nav-link" href="#" th:href="@{''(lang='es')}"
+                       th:if="${#locale.language == 'en'}">Español</a>
                 </li>
             </ul>
         </div>
