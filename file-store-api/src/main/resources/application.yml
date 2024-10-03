@@ -1,0 +1,23 @@
+  server:
+    port: 8081
+
+  management:
+    endpoints:
+      web:
+        exposure:
+          include: health, beans
+    endpoint:
+      health:
+        enabled: false
+  spring:
+    application:
+      name: file-store-api
+
+  application:
+    store:
+      base-path: /home/matias/Escritorio/SpringTokio/flight-app-working-files
+
+  logging:
+    file:
+      path: /home/matias/logs
+

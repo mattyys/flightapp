@@ -1,0 +1,51 @@
+  management:
+    endpoints:
+      web:
+        exposure:
+          include: health, beans
+    endpoint:
+      health:
+        enabled: false
+  spring:
+    datasource:
+      url: jdbc:mariadb://localhost:3306/flights
+      username: root
+      password: dbpw
+    jpa:
+      show-sql: true
+      hibernate:
+        ddl-auto: validate
+      open-in-view: false
+    servlet:
+      session:
+        tracking-modes: COOKIE
+      multipart:
+        max-file-size: 5MB
+    messages:
+      basename: messages/messages
+#      use-code-as-default-message: true # Para que se muestren los codigos de los mensajes en lugar de los mensajes
+    mail:
+      host: smtp.gmail.com
+      port: 587
+      username: emailsendermatias@gmail.com
+      password: caxxocxlfupuzkro
+      properties:
+        mail:
+          smtp:
+            auth: true
+            starttls:
+              enable: true
+
+    application:
+      name: flightApp
+
+  logging:
+    file:
+      path: /home/matias/logs
+
+    # Logging para obtener mas detalles de las sentencias realizadas por Hibernate
+#  logging:
+#    level:
+#      org.tokioschool.flightapp.base.service: trace
+#      org.hibernate.sql: trace
+#      org.hibernate.orm.jdbc.bind: trace
