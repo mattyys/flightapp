@@ -1,4 +1,4 @@
-package org.tokioschool.flightapp.store.domain;
+package org.tokioschool.flightapp.store.dto;
 
 import lombok.Builder;
 import lombok.Value;
@@ -7,10 +7,7 @@ import lombok.extern.jackson.Jacksonized;
 @Value
 @Builder
 @Jacksonized
-public class ResourceDescription {
+public class ResourceCreateRequestDTO {
 
-    String contentType;
-    String filename;
     String description;
-    int size;
 }

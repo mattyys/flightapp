@@ -7,11 +7,10 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockMultipartFile;
-import org.tokioschool.flightapp.flight.store.config.StoreConfigurationProperties;
-import org.tokioschool.flightapp.flight.store.dto.ResourceContentDTO;
-import org.tokioschool.flightapp.flight.store.dto.ResourceIdDTO;
-import org.tokioschool.flightapp.flight.store.service.StoreService;
-import org.tokioschool.flightapp.flight.store.service.impl.StoreServiceImpl;
+import org.tokioschool.flightapp.store.config.StoreConfigurationProperties;
+import org.tokioschool.flightapp.store.dto.ResourceContentDTO;
+import org.tokioschool.flightapp.store.dto.ResourceIdDTO;
+import org.tokioschool.flightapp.store.service.StoreService;
 
 import java.io.IOException;
 import java.nio.file.Files;

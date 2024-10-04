@@ -6,9 +6,9 @@ import org.springframework.web.multipart.MultipartFile;
 import org.tokioschool.flightapp.flight.domain.FlightImage;
 import org.tokioschool.flightapp.flight.dto.FlightImageResourceDTO;
 import org.tokioschool.flightapp.flight.service.FlightImageService;
-import org.tokioschool.flightapp.flight.store.dto.ResourceContentDTO;
-import org.tokioschool.flightapp.flight.store.dto.ResourceIdDTO;
-import org.tokioschool.flightapp.flight.store.service.StoreService;
+import org.tokioschool.flightapp.store.dto.ResourceContentDTO;
+import org.tokioschool.flightapp.store.dto.ResourceIdDTO;
+import org.tokioschool.flightapp.store.service.StoreService;
 
 import java.util.UUID;
 

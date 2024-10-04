@@ -1,4 +1,4 @@
-package org.tokioschool.flightapp.flight.store.dto;
+package org.tokioschool.flightapp.store.dto;
 
 import lombok.Builder;
 import lombok.Value;

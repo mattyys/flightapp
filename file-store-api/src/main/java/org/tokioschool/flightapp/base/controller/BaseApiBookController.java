@@ -5,15 +5,11 @@ import jakarta.validation.Valid;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-import org.tokioschool.flightapp.base.dto.BookDTO;
-import org.tokioschool.flightapp.base.dto.BookSearchRequestDTO;
-import org.tokioschool.flightapp.base.dto.PageDTO;
+import org.springframework.web.bind.annotation.*;
+import org.tokioschool.flightapp.base.dto.*;
 import org.tokioschool.flightapp.base.service.BookService;
 
 @RestController
@@ -35,7 +31,45 @@ public class BaseApiBookController {
                 BookSearchRequestDTO.builder().genre(genre).page(page).pageSize(pageSize).build());
 
         return ResponseEntity.ok(pageDTO);
+    }
 
+    @GetMapping("/books/{bookId}")
+    public ResponseEntity<BookDTO> getBookById(@PathVariable("bookId") int bookId){
+        BookDTO bookDTO = bookService.getBookByBookId(bookId);
+        return ResponseEntity.ok(bookDTO);
+    }
+
+    @PostMapping("/books")
+    public ResponseEntity<BookDTO> createBook(
+            @RequestBody @Valid BookRequestDTO bookRequestDTO){
+        BookDTO bookDTO = bookService.createBook(bookRequestDTO);
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(bookDTO);
+    }
+
+    @PutMapping("/books/{bookId}")
+    public ResponseEntity<BookDTO> editBook(
+            @PathVariable("bookId") int bookId,
+            @RequestBody @Valid BookRequestDTO bookRequestDTO){
+
+        BookDTO bookDTO = bookService.editBook(bookId,bookRequestDTO);
+        return ResponseEntity.ok(bookDTO);
+    }
+
+    @PatchMapping("/books/{bookId}")
+    public ResponseEntity<BookDTO> patchBook(
+            @PathVariable("bookId") int bookId,
+            @RequestBody @Valid BookGenreRequestDTO bookGenreRequestDTO){
+
+        BookDTO bookDTO = bookService.editBookGenre(bookId, bookGenreRequestDTO);
+
+        return ResponseEntity.ok(bookDTO);
+    }
+
+    @DeleteMapping("/books/{bookId}")
+    public ResponseEntity<Void> deleteBook(@PathVariable("bookId") int bookId){
+        bookService.deleteBookById(bookId);
+        return ResponseEntity.noContent().build();
     }
 
 }

@@ -1,4 +1,4 @@
-package org.tokioschool.flightapp.flight.store.config;
+package org.tokioschool.flightapp.store.config;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 

@@ -1,15 +1,15 @@
-package org.tokioschool.flightapp.flight.store.service.impl;
+package org.tokioschool.flightapp.store.service.impl;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-import org.tokioschool.flightapp.flight.store.config.StoreConfigurationProperties;
-import org.tokioschool.flightapp.flight.store.domain.ResourceDescription;
-import org.tokioschool.flightapp.flight.store.dto.ResourceContentDTO;
-import org.tokioschool.flightapp.flight.store.dto.ResourceIdDTO;
-import org.tokioschool.flightapp.flight.store.service.StoreService;
+import org.tokioschool.flightapp.store.config.StoreConfigurationProperties;
+import org.tokioschool.flightapp.store.domain.ResourceDescription;
+import org.tokioschool.flightapp.store.dto.ResourceContentDTO;
+import org.tokioschool.flightapp.store.dto.ResourceIdDTO;
+import org.tokioschool.flightapp.store.service.StoreService;
 
 import java.io.File;
 import java.io.IOException;
