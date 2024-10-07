@@ -39,6 +39,9 @@
     application:
       name: flightApp
 
+  application:
+    store:
+      base-url: http://localhost:8081
   logging:
     file:
       path: /home/matias/logs

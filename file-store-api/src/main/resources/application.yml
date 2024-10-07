@@ -12,6 +12,10 @@
   spring:
     application:
       name: file-store-api
+    servlet:
+      multipart:
+        max-file-size: 10MB
+
 
   application:
     store:
