@@ -21,6 +21,9 @@
     store:
       base-path: /home/matias/Escritorio/SpringTokio/flight-app-working-files
 
+  springdoc:
+    packages-to-scan: org.tokioschool.flightapp.store
+
   logging:
     file:
       path: /home/matias/logs

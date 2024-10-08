@@ -1,5 +1,10 @@
 package org.tokioschool.flightapp.store.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -20,10 +25,19 @@ import java.util.UUID;
 @RequiredArgsConstructor
 @RequestMapping("/store/api/resources")
 @Validated
+@Tag(name = "Resources", description = "Resources operations")
 public class ResourceApiController {
 
   private final StoreService storeService;
 
+  @Operation(
+      summary = "Get resource by resourceId",
+      responses = {
+        @ApiResponse(
+            responseCode = "200",
+            description = "resource",
+            content = @Content(schema = @Schema(implementation = ResourceContentDTO.class)))
+      })
   @GetMapping("/{resourceId}")
   public ResponseEntity<ResourceContentDTO> getResourceContent(
       @PathVariable("resourceId") UUID resourceId) {
@@ -52,12 +66,10 @@ public class ResourceApiController {
   }
 
   @DeleteMapping("/{resourceId}")
-  public ResponseEntity<Void> deleteResourceById(
-          @PathVariable("resourceId") UUID resourceId) {
+  public ResponseEntity<Void> deleteResourceById(@PathVariable("resourceId") UUID resourceId) {
 
     storeService.deleteResource(resourceId);
 
     return ResponseEntity.noContent().build();
   }
-
 }
