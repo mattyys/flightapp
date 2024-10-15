@@ -15,6 +15,7 @@ import org.tokioschool.flightapp.store.service.StoreService;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.List;
 import java.util.Optional;
 
 class StoreServiceImplTest {
@@ -29,7 +30,7 @@ class StoreServiceImplTest {
   void beforeEach() {
 
     StoreConfigurationProperties storeConfigurationProperties =
-        new StoreConfigurationProperties(tempBasePath);
+        new StoreConfigurationProperties(tempBasePath, List.of());
 
     storeService = new StoreServiceImpl(storeConfigurationProperties, objectMapper);
   }

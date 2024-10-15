@@ -18,8 +18,19 @@
 
 
   application:
+    jwt:
+      secret: ExmgLwe85jdc9wwl95dd1UJKKf85sql5B
+      duration: PT1H
     store:
       base-path: /home/matias/Escritorio/SpringTokio/flight-app-working-files
+      users:
+        - username: consumer
+          #password = "password"
+          password: "{bcrypt}$2a$12$nte5bSwK6BtGuRJ4.LsthupTTBbyC1OlWYS.mA6mPqMe1/XnNfVOC"
+          authorities: read-resource
+        - username: producer
+          password: "{bcrypt}$2a$12$nte5bSwK6BtGuRJ4.LsthupTTBbyC1OlWYS.mA6mPqMe1/XnNfVOC"
+          authorities: read-resource,write-resource
 
   springdoc:
     packages-to-scan: org.tokioschool.flightapp.store
