@@ -42,6 +42,8 @@
   application:
     store:
       base-url: http://localhost:8081
+      username: producer
+      password: password
   logging:
     file:
       path: /home/matias/logs

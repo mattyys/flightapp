@@ -1,7 +1,6 @@
 package org.tokioschool.flightapp.store.config;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.security.core.userdetails.User;
 
 import java.nio.file.Path;
 import java.util.List;
