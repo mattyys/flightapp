@@ -24,7 +24,7 @@ public class FlightImageServiceImpl implements FlightImageService {
     ResourceIdDTO resourceIdDTO =
         storeFacade
             .saveResource(multipartFile, "flight-app")
-            .orElseThrow(() -> new IllegalArgumentException("Resource nos saved in store"));
+            .orElseThrow(() -> new IllegalArgumentException("Resource not saved in store"));
 
     return FlightImage.builder()
         .contentType(multipartFile.getContentType())

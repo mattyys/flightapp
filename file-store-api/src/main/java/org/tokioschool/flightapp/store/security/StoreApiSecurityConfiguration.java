@@ -55,20 +55,19 @@ public class StoreApiSecurityConfiguration {
         .build();
   }
 
-  private static class CustomJwtAuthenticationConverter implements Converter<Jwt, AbstractAuthenticationToken>{
+  private static class CustomJwtAuthenticationConverter
+      implements Converter<Jwt, AbstractAuthenticationToken> {
 
     @Override
     public AbstractAuthenticationToken convert(Jwt source) {
 
       JwtAuthenticationConverter jwtAuthenticationConverter = new JwtAuthenticationConverter();
       jwtAuthenticationConverter.setJwtGrantedAuthoritiesConverter(
-              jwt ->
-                      ((List<String>)jwt.getClaim("authorities"))
-                              .stream().map(s -> (GrantedAuthority) new SimpleGrantedAuthority(s)).toList());
-
+          jwt ->
+              ((List<String>) jwt.getClaim("authorities"))
+                  .stream().map(s -> (GrantedAuthority) new SimpleGrantedAuthority(s)).toList());
 
       return jwtAuthenticationConverter.convert(source);
     }
   }
-
 }

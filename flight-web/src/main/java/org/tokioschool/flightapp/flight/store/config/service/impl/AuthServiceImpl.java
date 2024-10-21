@@ -24,7 +24,10 @@ public class AuthServiceImpl implements AuthService {
   @Override
   public String getAccessToken() {
 
-    if (System.currentTimeMillis() < expiresAt) return accessToken;
+    if (System.currentTimeMillis() < expiresAt) {
+      log.info("Usando token: {}", accessToken);
+      return accessToken;
+    }
 
     Map<String, String> authRequest =
         Map.of(
@@ -34,17 +37,24 @@ public class AuthServiceImpl implements AuthService {
             storeConfigurationProperties.password());
 
     try {
+
       AuthResponseDTO authResponseDTO =
           restClient
               .post()
-              .uri(storeConfigurationProperties.baseUrl() + "/store/spi/auth")
+              .uri(storeConfigurationProperties.baseUrl() + "/store/api/auth")
               .contentType(MediaType.APPLICATION_JSON)
               .body(authRequest)
               .retrieve()
               .body(AuthResponseDTO.class);
 
-      accessToken = authResponseDTO.accessToken();
-      expiresAt = authResponseDTO.getExpiresAt();
+      if (authResponseDTO != null) {
+
+        accessToken = authResponseDTO.accessToken();
+        expiresAt = authResponseDTO.getExpiresAt();
+
+      } else {
+        log.error("No se ha podido obtener el token, respuesta auth nula");
+      }
 
     } catch (Exception e) {
       log.error("Exception in file-store auth endpoint", e);

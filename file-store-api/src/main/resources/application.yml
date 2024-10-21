@@ -30,7 +30,7 @@
           authorities: read-resource
         - username: producer
           password: "{bcrypt}$2a$12$nte5bSwK6BtGuRJ4.LsthupTTBbyC1OlWYS.mA6mPqMe1/XnNfVOC"
-          authorities: read-resource,write-resource
+          authorities: read-resource, write-resource
 
   springdoc:
     packages-to-scan: org.tokioschool.flightapp.store

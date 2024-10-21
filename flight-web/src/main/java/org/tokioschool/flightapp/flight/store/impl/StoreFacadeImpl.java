@@ -16,6 +16,7 @@ import org.springframework.web.client.RestClient;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 import org.tokioschool.flightapp.flight.store.StoreFacade;
+import org.tokioschool.flightapp.flight.store.config.service.AuthService;
 import org.tokioschool.flightapp.flight.store.dto.ResourceContentDTO;
 import org.tokioschool.flightapp.flight.store.dto.ResourceIdDTO;
 
@@ -32,6 +33,7 @@ public class StoreFacadeImpl implements StoreFacade {
   // private final RestTemplate restTemplate;
   private final RestClient restClient;
   private final ObjectMapper objectMapper;
+  private final AuthService authService;
 
   @Override
   public Optional<ResourceIdDTO> saveResource(
@@ -88,10 +90,12 @@ public class StoreFacadeImpl implements StoreFacade {
 
     try {
 
+
       ResourceContentDTO resourceContentDTO =
           restClient
               .get()
               .uri("/store/api/resources/{resourceId}", resourceId)
+              .header("Authorization", "Bearer " + authService.getAccessToken())
               .retrieve()
               .body(ResourceContentDTO.class);
 
@@ -113,10 +117,10 @@ public class StoreFacadeImpl implements StoreFacade {
   @Override
   public void deleteResource(UUID resourceId) {
 
-    restClient.delete()
-            .uri("/store/api/resources/{resourceId}", resourceId)
-            .retrieve()
-            .toBodilessEntity();
-
+    restClient
+        .delete()
+        .uri("/store/api/resources/{resourceId}", resourceId)
+        .retrieve()
+        .toBodilessEntity();
   }
 }
