@@ -1,5 +1,6 @@
 package org.tokioschool.flightapp.store.controller;
 
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -23,6 +24,7 @@ public class AuthenticationApiController {
   }
 
   @GetMapping("/me")
+  @SecurityRequirement(name="bearer-authentication")
   public ResponseEntity<AuthenticatedMeResponseDTO> getAuthenticated() {
     return ResponseEntity.ok(authenticationService.getAuthenticated());
   }

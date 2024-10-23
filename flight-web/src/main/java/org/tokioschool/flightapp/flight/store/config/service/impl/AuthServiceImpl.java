@@ -22,7 +22,7 @@ public class AuthServiceImpl implements AuthService {
   private long expiresAt;
 
   @Override
-  public String getAccessToken() {
+  public synchronized String getAccessToken() {
 
     if (System.currentTimeMillis() < expiresAt) {
       log.info("Usando token: {}", accessToken);
