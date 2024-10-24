@@ -15,6 +15,7 @@
     <modules>
         <module>flight-web</module>
         <module>file-store-api</module>
+        <module>airport-batch</module>
     </modules>
 
     <properties>

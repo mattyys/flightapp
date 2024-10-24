@@ -1,0 +1,12 @@
+spring:
+  datasource:
+    url: jdbc:mariadb://localhost:3306/airport_batch
+    username: root
+    password: dbpw
+  batch:
+    jdbc:
+      initialize-schema: always
+
+application:
+  batch:
+    base-path: /home/matias/Escritorio/SpringTokio/flight-app-batch-working-files
