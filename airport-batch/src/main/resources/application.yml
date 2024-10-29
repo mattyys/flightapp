@@ -4,6 +4,8 @@ spring:
     username: root
     password: dbpw
   batch:
+    job:
+      enabled: false
     jdbc:
       initialize-schema: always
 
