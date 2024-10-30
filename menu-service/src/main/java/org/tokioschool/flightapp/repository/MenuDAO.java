@@ -6,8 +6,10 @@ import org.springframework.data.mongodb.repository.Query;
 import org.tokioschool.flightapp.domain.Menu;
 
 import java.math.BigDecimal;
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 public interface MenuDAO extends MongoRepository<Menu, String> {
   List<Menu> findByVegetarianIsTrueOrderByTitle();
@@ -55,5 +57,9 @@ public interface MenuDAO extends MongoRepository<Menu, String> {
       fields = "{'mains.$':  1}")
   List<Menu> findMainsByIngredient(String lettuce);
 
+
+//  List<Menu> finByBeerStyle(String lightLager);
+
+  List<Menu> findByBeerIn(Collection<UUID> beerIds);
 
 }
