@@ -18,6 +18,7 @@
 
 
   application:
+    custom: ${APPLICATION_CUSTOM}
     jwt:
       secret: ExmgLwe85jdc9wwl95dd1UJKKf85sql5B
       duration: PT1H
@@ -38,4 +39,14 @@
   logging:
     file:
       path: /home/matias/logs
+
+---
+spring:
+  config:
+    activate:
+      on-profile:
+        - docker
+application:
+  store:
+    base-path: /working-files
 
