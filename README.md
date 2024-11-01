@@ -1,6 +1,6 @@
 # Flightapp
 
-Proyecto de reserva de vuelos hecho en formacion Java-Spring de TokioSchool
+Proyecto de reserva de vuelos hecho en formación Java-Spring de TokioSchool
 
 ## Descripción
 
@@ -10,40 +10,41 @@ vuelos y ver sus reservas. Los administradores pueden ver y gestionar los vuelos
 
 Es un proyecto en el cual se exploran los conceptos de autenticación, autorización mediante JWT, persistencia de datos,
 API REST,
-tareas programadas y plantillas HTML, endpoints de la aplicación, envio de correos electrónicos, test unitarios y de
+tareas programadas y plantillas HTML, endpoints de la aplicación, envío de correos electrónicos, test unitarios y de
 integración.
 
 El proyecto se divide en cuatro módulos: `flight-web` , `airport-batch`, `file-store-api` y `menu-service`.
 
-## Descripcion de los Modulos
+## Descripción de los Módulos
 
 ### flight-web
 
-Este modulo contiene la logica de negocios de la aplicacion de reserva de vuelos. Contiene los controladores, servicios,
-repositorios y entidades de la aplicacion. Ademas de las plantillas de Thymeleaf para la interfaz de usuario.
-Gestiona los idiomas de la aplicacion, validacion de formularios, paginacion, manejo de errores, envio de correos.
+Este módulo contiene la lógica de negocios de la aplicación de reserva de vuelos. Contiene los controladores, servicios,
+repositorios y entidades de la aplicación. Además de las plantillas de Thymeleaf para la interfaz de usuario.
+Gestiona los idiomas de la aplicación, validación de formularios, paginación, manejo de errores, envío de correos.
 Muestra la lista de vuelos disponibles, permite a los usuarios registrarse, iniciar sesión, buscar vuelos, reservar.
 
 ### file-store-api
 
-Este modulo se encaraga de la gestion de archivos(imagenes) de la aplicacion. Permite subir, descargar y eliminar
+Este módulo se encarga de la gestión de archivos(imágenes) de la aplicación. Permite subir, descargar y eliminar
 archivos.
-Tambien es el modulo encargado de la autenticacion y autorizacion de los usuarios mediante JWT.
-Este modulo se comunica con el modulo `flight-web` para la gestion de archivos mediante una API REST.
+También es el módulo encargado de la autenticación y autorización de los usuarios mediante JWT.
+Este módulo se comunica con el módulo `flight-web` para la gestión de archivos mediante una API REST.
 
 ### airport-batch
 
-Este modulo se encarga de la carga de datos de los aeropuertos en la base de datos. Utiliza Spring Batch para leer un
-fichero csv que contiene el listado de aeropuertos y cargarlos en la base de datos. Tambien exporta un fichero en
+Este módulo se encarga de la carga de datos de los aeropuertos en la base de datos. Utiliza Spring Batch para leer un
+fichero csv que contiene el listado de aeropuertos y cargarlos en la base de datos. También exporta un fichero en
 formato json con el listado de aeropuertos.
 
 ### menu-service
 
-Este modulo es una aplicacion del tipo "runner" que se ejecuta, realiza el proceso y se detiene. En este modulo se
-utilizan base de datos NO-relacionales como MongoDB para almacenar los datos de los menus de la aplicacion. Se utiliza
-Spring Data MongoDB para la persistencia de datos y la dependecnia de JavaFaker para generar datos de prueba.
-Se muestran los datos en el log de la aplicacion. Contiene metodos de busquedas, ordenamientos, paginacion y filtros.
-Tambien se aplico la utilizacion de un documento referencial como `@DBRef` para relacionar dos colecciones.
+Este módulo es una aplicación del tipo "runner" que se ejecuta, realiza el proceso y se detiene. En este módulo se
+utilizan base de datos NO-relacionales como MongoDB para almacenar los datos de los menus de la aplicación. Se utiliza
+Spring Data MongoDB para la persistencia de datos y la dependencia de JavaFaker para generar datos de prueba.
+Se muestran los datos en el log de la aplicación. Contiene métodos de búsquedas, ordenamientos, paginación y filtros.
+También se aplicó la utilización de un documento referencial como `@DBRef` para relacionar dos colecciones.
+
 
 ## Instalación y ejecución
 
@@ -64,7 +65,7 @@ docker compose -f docker-compose-dev.yml up -d
 
 3. Crear esquema de base de datos
 
-Ya con el contenedor iniciado, ejecutamos los scripts SQL que estan en la carpeta resources/database para crear las
+Ya con el contenedor iniciado, ejecutamos los scripts SQL que están en la carpeta resources/database para crear las
 tablas y cargar los datos de
 prueba.
 
@@ -77,7 +78,7 @@ mysql -uroot -pdbpw --protocol tcp flights < src/main/resources/scripts/database
 
 4. Ejecutar la aplicación
 
-Ingresamos a la carpeta raiz del proyecto, luego ejecutamos el siguiente comando para descargar dependencias y compilar
+Ingresamos a la carpeta raíz del proyecto, luego ejecutamos el siguiente comando para descargar dependencias y compilar
 el proyecto:
 
 ```bash
@@ -144,9 +145,9 @@ docker compose -f docker-compose-dev.yml up -d
 - Maven
 - IntelliJ IDEA
 
-## Agracedimientos
+## Agradecimientos
 
-Agradezco a TokioSchool por la formacion en Java-Spring y a los profesores por el apoyo y la guia en el desarrollo de
-esta aplicacion en la cual se trabajaron muchos conceptos que se utilizan en el mundo laboral.
+Agradezco a TokioSchool por la formación en Java-Spring y a los profesores por el apoyo y la guía en el desarrollo de
+esta aplicación en la cual se trabajaron muchos conceptos que se utilizan en el mundo laboral.
 
 
